@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK-Net 서비스 약관</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.10);
+            --glass-border: rgba(255, 255, 255, 0.20);
+            --glass-shadow: rgba(0, 0, 0, 0.30);
+            --accent: #4f8ef7;
+            --accent-hover: #3a7ae8;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.75);
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-image: url('back.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        /* 배경 어둡게 오버레이 */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 0;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 60px;
+        }
+
+        /* 헤더 */
+        header {
+            text-align: center;
+            margin-bottom: 36px;
+            animation: fadeDown 0.7s ease both;
+        }
+
+        header .brand {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: clamp(26px, 5vw, 40px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        /* 메인 카드 */
+        .card {
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 40px var(--glass-shadow);
+            overflow: hidden;
+            animation: fadeUp 0.7s ease 0.15s both;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .card-header .doc-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .card-header .doc-title .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-header .doc-title .icon svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 20px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Noto Sans KR', sans-serif;
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+
+        .btn-download:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-download svg {
+            width: 15px;
+            height: 15px;
+            fill: white;
+            flex-shrink: 0;
+        }
+
+        /* PDF 뷰어 영역 */
+        .pdf-viewer {
+            width: 100%;
+            height: clamp(500px, 72vh, 820px);
+            display: block;
+            border: none;
+        }
+
+        /* PDF를 지원하지 않는 브라우저용 폴백 */
+        .pdf-fallback {
+            display: none;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .pdf-fallback a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        /* 푸터 */
+        footer {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.5px;
+            animation: fadeUp 0.7s ease 0.3s both;
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 600px) {
+            .page-wrapper { padding: 28px 14px 48px; }
+            .card-header { padding: 14px 16px; }
+            .pdf-viewer { height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <header>
+            <p class="brand">SK-Net</p>
+            <h1>서비스 약관</h1>
+            <p>SK-Net 서비스 이용약관을 확인하세요.</p>
+        </header>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="doc-title">
+                    <!-- PDF 아이콘 -->
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/>
+                        </svg>
+                    </div>
+                    <span>SK-Net 이용약관 (2024)</span>
+                </div>
+                <a href="SK-Net_Terms-2024-v11.pdf" download class="btn-download">
+                    <!-- 다운로드 아이콘 -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/>
+                    </svg>
+                    PDF 다운로드
+                </a>
+            </div>
+
+            <iframe
+                class="pdf-viewer"
+                src="SK-Net_Terms-2024-v11.pdf#toolbar=1&navpanes=0"
+                title="SK-Net 이용약관 PDF">
+                <div class="pdf-fallback">
+                    <p>브라우저에서 PDF를 직접 표시할 수 없습니다.</p>
+                    <p><a href="SK-Net_Terms-2024-v11.pdf">여기를 클릭하여 PDF를 열거나</a>
+                    위의 다운로드 버튼을 이용하세요.</p>
+                </div>
+            </iframe>
+        </div>
+
+        <footer>
+            <p>COPYRIGHT &copy; 2025 SK INC. ALL RIGHTS RESERVED</p>
+        </footer>
+
+    </div>
+</body>
+</html>
